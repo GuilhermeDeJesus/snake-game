@@ -82,7 +82,7 @@ export default function GameBoard({ speedMultiplier = 1 }) {
 
   useEffect(() => {
     if (gameOver) return;
-    const speed = 150 * speedMultiplier;
+    const speed = 200 * speedMultiplier;
     moveInterval.current = setInterval(moveSnake, speed);
     return () => clearInterval(moveInterval.current);
   }, [snake, direction, gameOver, speedMultiplier]);
