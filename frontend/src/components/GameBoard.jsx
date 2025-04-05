@@ -15,6 +15,7 @@ export default function GameBoard({ speedMultiplier = 1 }) {
   const [food, setFood] = useState(generateFood());
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [gameOver, setGameOver] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const moveInterval = useRef(null);
 
   const score = snake.length - 1;
@@ -30,16 +31,22 @@ export default function GameBoard({ speedMultiplier = 1 }) {
     setDirection(INITIAL_DIRECTION);
     setFood(generateFood());
     setGameOver(false);
+    setGameOver(false);
   }
 
 
   useEffect(() => {
-    backgroundMusic.play().catch(() => {}); // in case autoplay is blocked
+    backgroundMusic.play().catch(() => {});
   }, []);
+
+  useEffect(() => {
+    backgroundMusic.muted = isMuted;
+  }, [isMuted]);
 
 
   useEffect(() => {
     const handleKey = (e) => {
+
       if (
         ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)
       ) {
@@ -50,6 +57,7 @@ export default function GameBoard({ speedMultiplier = 1 }) {
         resetGame();
         return;
       }
+      
   
       switch (e.key) {
         case "ArrowUp":
@@ -135,6 +143,12 @@ export default function GameBoard({ speedMultiplier = 1 }) {
         <div className="text-sm md:text-lg">
         Pontuação: <span className="font-bold text-green-300">{score}</span>
         </div>
+        <button
+            onClick={() => setIsMuted(!isMuted)}
+            className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-sm text-white"
+        >
+            {isMuted ? "🔇" : "🔊"}
+        </button>
         {gameOver && (
         <button
             onClick={resetGame}
