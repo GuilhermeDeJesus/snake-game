@@ -198,6 +198,36 @@ export default function GameBoard({ speedMultiplier = 1 }) {
         Game Over!
         </div>
     )}
+
+    {/* Controles Mobile */}
+        <div className="sm:hidden flex flex-col items-center mt-4 gap-2">
+            <button
+                onClick={() => setDirection((prev) => (prev[0] === 1 ? prev : [-1, 0]))}
+                className="bg-gray-700 text-white p-3 rounded"
+            >
+                ⬆️
+            </button>
+            <div className="flex gap-4">
+                <button
+                onClick={() => setDirection((prev) => (prev[1] === 1 ? prev : [0, -1]))}
+                className="bg-gray-700 text-white p-3 rounded"
+                >
+                ⬅️
+                </button>
+                <button
+                onClick={() => setDirection((prev) => (prev[1] === -1 ? prev : [0, 1]))}
+                className="bg-gray-700 text-white p-3 rounded"
+                >
+                ➡️
+                </button>
+            </div>
+            <button
+                onClick={() => setDirection((prev) => (prev[0] === -1 ? prev : [1, 0]))}
+                className="bg-gray-700 text-white p-3 rounded"
+            >
+                ⬇️
+            </button>
+        </div>
     </div>
   );
 }
