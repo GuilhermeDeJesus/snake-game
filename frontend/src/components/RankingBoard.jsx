@@ -9,7 +9,7 @@ export default function RankingBoard() {
     setLastPlayer(storedName);
     localStorage.removeItem("lastPlayer"); 
 
-    fetch("http://localhost:3000/scores")
+    fetch("https://snake-game-b8xi.onrender.com/scores")
       .then((res) => res.json())
       .then((data) => setScores(data))
       .catch((err) => console.error("Erro ao carregar ranking:", err));

@@ -9,7 +9,9 @@ const SCORES_FILE = path.join(__dirname, "scores.json");
 
 console.log("Caminho real do scores.json:", SCORES_FILE);
 
-app.use(cors());
+app.use(cors({
+    origin: "https://snake-game-gules-six.vercel.app" // substitua com a URL do seu frontend
+}));
 app.use(express.json());
 
 function readScores() {

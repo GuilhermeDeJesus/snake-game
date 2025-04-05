@@ -112,7 +112,7 @@ export default function GameBoard({ speedMultiplier = 1 }) {
     const name = prompt("Digite seu nome para salvar no ranking:");
     if (!name) return;
   
-    fetch("http://localhost:3000/scores", {
+    fetch("https://snake-game-b8xi.onrender.com/scores", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
